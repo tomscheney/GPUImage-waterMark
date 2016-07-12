@@ -4,15 +4,19 @@
 一、开启实时视频
 - (void)videoFilter{
     //GPUImageVideoCamera 必须声明为 全局变量或属性，否则开不到视频
+
     videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
     videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    
     //画面镜像
     videoCamera.horizontallyMirrorFrontFacingCamera = YES;
+    
     //视图对象
     filterView = [[GPUImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, ScreenWidth, ScreenHeight)];
     
     filterView.center = self.view.center;
     [self.view insertSubview:filterView atIndex:0];
+    
     //过滤器
      beautifyFilter = [[GPUImageBeautifyFilter alloc] init];
     [videoCamera addTarget:beautifyFilter];
@@ -20,20 +24,25 @@
     
     [videoCamera startCameraCapture];/*到此开启视频*/
     
+    
     /*为加水印初始化对象*/
     //加水印的过滤器
     blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
     blendFilter.mix = 1.0;
     
+    
     /*为录制初始化对象*/
+    
     //将视频流写到文件
     NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.m4v"];
     unlink([pathToMovie UTF8String]);
     NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
     movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(480.0, 640.0)];
 
+   
     //添加录制对象
     [beautifyFilter addTarget:movieWriter];
+    
     //添加音频输入
     videoCamera.audioEncodingTarget = movieWriter;
     
@@ -47,8 +56,10 @@
     if (sender.tag == 0) {
         sender.tag = 1;
         
+       
         /*开启这个方法，......*/
 //        movieWriter.encodingLiveVideo = YES;
+        
         //调用刻录方法
         [movieWriter startRecording];
         [sender setTitle:@"停止录制" forState:UIControlStateNormal];
@@ -71,6 +82,7 @@
     
     if (sender.tag == 0) {
         sender.tag = 1;
+    
     
     /*初始化水印视图*/
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, filterView.frame.size.width,filterView.frame.size.height)];
@@ -102,6 +114,7 @@
     [_uiElementInput addTarget:blendFilter];
     [blendFilter addTarget:filterView];
 
+   
     /*一定要把beautyFilter的视频流对象movieWriter移除，在赋值给水印过滤器blendFilter*/
     [beautifyFilter removeTarget:movieWriter];
     [blendFilter addTarget:movieWriter];
@@ -115,9 +128,11 @@
 //    _writefilter = blendFilter;/*这里是借鉴了别人的，加上好像没什么用*/
     } else {
         sender.tag = 0;
+        
         /*显示视图的切换*/
         [blendFilter removeTarget:filterView];
         [beautifyFilter addTarget:filterView];
+        
         /*视频流对象切换*/
         [blendFilter removeTarget:movieWriter];
         [beautifyFilter  addTarget:movieWriter];
