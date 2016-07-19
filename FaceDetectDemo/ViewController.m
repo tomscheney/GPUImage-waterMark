@@ -11,6 +11,9 @@
 #import "ViewController.h"
 #import <GPUImage.h>
 #import "GPUImageBeautifyFilter.h"
+
+#import <AVFoundation/AVFoundation.h>
+
 @interface ViewController (){
 
     GPUImageVideoCamera *videoCamera;
@@ -31,12 +34,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    
 }
 
 - (void)videoFilter{
     //GPUImageVideoCamera 必须声明为 全局变量或属性，否则开不到视频
-    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
+    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
     videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     //画面镜像
     videoCamera.horizontallyMirrorFrontFacingCamera = YES;
@@ -55,7 +57,6 @@
     //加水印的过滤器
     blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
     blendFilter.mix = 1.0;
-    
     
     //将视频流写到文件
     NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.m4v"];
@@ -77,7 +78,7 @@
     if (sender.tag == 0) {
         sender.tag = 1;
         
-        
+        /*关联的是expectsMediaDataInRealTim，设置为yes，输入是实时的*/
 //        movieWriter.encodingLiveVideo = YES;
         //调用刻录方法
         [movieWriter startRecording];
@@ -97,6 +98,8 @@
     
 }
 
+
+
 - (IBAction)addWaterMask:(UIButton*)sender {
     
     if (sender.tag == 0) {
@@ -108,8 +111,8 @@
     UIImage *image = [UIImage imageNamed:@"waterMark"];
     UIImageView *ivTemp = [[UIImageView alloc] initWithFrame:CGRectMake(0, 150, image.size.width, image.size.height)];
     ivTemp.image = image;
-    ivTemp.tag = 500;
-    ivTemp.hidden = NO;
+//    ivTemp.tag = 500;
+//    ivTemp.hidden = NO;
     [contentView addSubview:ivTemp];
     
     if (_uiElementInput) {
@@ -138,7 +141,7 @@
     
     __weak typeof(self) weakSelf = self;
     [beautifyFilter setFrameProcessingCompletionBlock:^(GPUImageOutput * filter, CMTime frameTime){
-        [contentView viewWithTag:500].hidden = NO;
+//        [contentView viewWithTag:500].hidden = NO;
         [weakSelf.uiElementInput update];
     }];
 //    _writefilter = blendFilter;
@@ -167,8 +170,27 @@
 
 }
 
+// 本地 视频 加水印
+- (void)addWaterMarkFromNativeVideo{
+
+    NSURL *outputFileURL = [NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"waterMark.mp4"]];
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:outputFileURL options:nil];
+    AVMutableComposition* mixComposition = [AVMutableComposition composition];
+    
+    AVMutableCompositionTrack *compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo  preferredTrackID:kCMPersistentTrackID_Invalid];
+    AVAssetTrack *clipVideoTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    
+    CMTime startTime = CMTimeMinimum(videoAsset.duration, CMTimeMake(2*videoAsset.duration.timescale, videoAsset.duration.timescale));
+    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(startTime, videoAsset.duration)
+                                   ofTrack:clipVideoTrack
+                                    atTime:kCMTimeZero error:nil];
+    
+    [compositionVideoTrack setPreferredTransform:[[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] preferredTransform]];
+    
+}
 
 
+// 人脸检测
 -(void)DetectFace{
     
     UIImage* image = [UIImage imageNamed:@"face"];

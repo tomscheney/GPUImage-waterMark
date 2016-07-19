@@ -77,6 +77,7 @@
 		E210AF4D1D2BDF8B005DD079 /* FaceDetectDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E210AF5F1D2BDF8B005DD079 /* Info.plist */,
 				E23C26951D2F886B00DE2196 /* GPUImageBeautifyFilter.h */,
 				E23C26961D2F886B00DE2196 /* GPUImageBeautifyFilter.m */,
 				E210AF511D2BDF8B005DD079 /* AppDelegate.h */,
@@ -86,7 +87,6 @@
 				E210AF571D2BDF8B005DD079 /* Main.storyboard */,
 				E210AF7A1D2E6205005DD079 /* Launch.storyboard */,
 				E210AF5A1D2BDF8B005DD079 /* Assets.xcassets */,
-				E210AF5F1D2BDF8B005DD079 /* Info.plist */,
 				E210AF4E1D2BDF8B005DD079 /* Supporting Files */,
 			);
 			path = FaceDetectDemo;
@@ -142,6 +142,7 @@
 				TargetAttributes = {
 					E210AF4A1D2BDF8B005DD079 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7G7L8A3D23;
 					};
 				};
 			};
@@ -337,10 +338,12 @@
 			baseConfigurationReference = F2B7F495CCF98003B36770F8 /* Pods-FaceDetectDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FaceDetectDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.book.FaceDetectDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8b78c171-894b-4b51-b88e-c3baee7aceb2";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -350,10 +353,12 @@
 			baseConfigurationReference = 2C279DBB04211626D6DAC284 /* Pods-FaceDetectDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FaceDetectDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.book.FaceDetectDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8b78c171-894b-4b51-b88e-c3baee7aceb2";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

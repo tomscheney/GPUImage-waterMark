@@ -20,10 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IrV-UH-Zkw">
-                                <rect key="frame" x="117" y="484" width="79" height="30"/>
+                                <rect key="frame" x="90" y="461" width="126" height="38.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="IrV-UH-Zkw" secondAttribute="height" multiplier="79:30" id="cIB-20-emZ"/>
+                                    <constraint firstAttribute="width" secondItem="IrV-UH-Zkw" secondAttribute="height" multiplier="59:18" id="AFK-av-eRB"/>
                                 </constraints>
                                 <state key="normal" title="录制">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -33,10 +33,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBS-ei-xWv">
-                                <rect key="frame" x="113" y="527" width="87" height="33"/>
+                                <rect key="frame" x="90" y="516" width="126" height="44"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="iBS-ei-xWv" secondAttribute="height" multiplier="79:30" id="HXD-gT-haM"/>
+                                    <constraint firstAttribute="width" secondItem="iBS-ei-xWv" secondAttribute="height" multiplier="94:39" constant="20.820512820512832" id="1S0-SE-1sJ"/>
                                 </constraints>
                                 <state key="normal" title="加水印">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,11 +48,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iBS-ei-xWv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="97" id="7hK-Nl-5A2"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IrV-UH-Zkw" secondAttribute="bottom" constant="54" id="Gym-ex-BIc"/>
+                            <constraint firstItem="iBS-ei-xWv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="74" id="7hK-Nl-5A2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IrV-UH-Zkw" secondAttribute="bottom" constant="68" id="Gym-ex-BIc"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iBS-ei-xWv" secondAttribute="bottom" constant="8" id="VLk-Pr-Iiy"/>
-                            <constraint firstItem="IrV-UH-Zkw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="101" id="VS5-wR-fcm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="iBS-ei-xWv" secondAttribute="trailing" constant="104" id="xQP-7L-L5y"/>
+                            <constraint firstItem="IrV-UH-Zkw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="74" id="VS5-wR-fcm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IrV-UH-Zkw" secondAttribute="trailing" constant="88" id="cXK-7O-eRP"/>
+                            <constraint firstItem="iBS-ei-xWv" firstAttribute="top" secondItem="IrV-UH-Zkw" secondAttribute="bottom" constant="16.5" id="oSH-LQ-IVk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iBS-ei-xWv" secondAttribute="trailing" constant="88" id="xQP-7L-L5y"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

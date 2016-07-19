@@ -31,7 +31,6 @@
     [mainWindow addSubview:imageView];
     [mainWindow addSubview:launchView];
     
-    
     [UIView animateWithDuration:0.6f delay:0.5f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         launchView.alpha = 0.0f;
         launchView.layer.transform = CATransform3DScale(CATransform3DIdentity, 1.5f, 1.5f, 1.0f);
